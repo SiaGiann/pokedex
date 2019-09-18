@@ -1,19 +1,31 @@
 <template>
   <div class="pokemon-card">
-   <img :src="imgUrl">
-   <p>{{ name | capitalize }}</p>
-   <ul>
-     <li>Weight: {{ weight }}</li>
-     <li>Height: {{ height }}</li>
-     <li>Types: <span v-for="(type, i) in types" :key="type.type.name">{{ type.type.name | capitalize }}<span v-if="i == 0">, </span></span></li>
-   </ul>
+
+   <v-card
+    max-width="344"
+    class="justify-center d-flex"
+  >
+    <v-card-title>{{ name | capitalize }}</v-card-title>
+    <v-img
+      height="200px"
+      width="200px"
+      :src="imgUrl"
+    />
+    <v-card-text>
+      <ul>
+        <li>Weight: {{ weight }}</li>
+        <li>Height: {{ height }}</li>
+        <li>Types: <span v-for="(type, i) in types" :key="type.type.name">{{ type.type.name | capitalize }}<span v-if="i !== types.length-1">, </span></span></li>
+      </ul>
+    </v-card-text>
+  </v-card>
   </div>
 </template>
 
 <script>
 export default {
   props: ["pokemonNumber"],
-  
+
   data () {
     return {
       name: '',
@@ -50,4 +62,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.pokemon-card {
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
 </style>
